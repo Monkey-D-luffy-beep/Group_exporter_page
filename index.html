@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Group Contacts Exporter — Export WhatsApp Group Members to Excel/CSV</title>
+  <meta name="description" content="Export any WhatsApp Web group's members — names, phone numbers &amp; roles — to Excel or CSV in one click. Free Chrome extension. Your contacts never leave your device." />
+  <meta name="keywords" content="WhatsApp group export, export WhatsApp contacts, WhatsApp group members to Excel, WhatsApp group members CSV, WhatsApp Web extension, export WhatsApp phone numbers" />
+  <meta name="robots" content="index, follow" />
+  <link rel="canonical" href="https://groupexporter.nexoraai.co.in/" />
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="Group Contacts Exporter" />
+  <meta property="og:title" content="Group Contacts Exporter — Export WhatsApp Group Members to Excel/CSV" />
+  <meta property="og:description" content="Export any WhatsApp Web group's members — names, phone numbers &amp; roles — to Excel or CSV in one click. Free. Data stays on your device." />
+  <meta property="og:url" content="https://groupexporter.nexoraai.co.in/" />
+  <meta property="og:image" content="https://groupexporter.nexoraai.co.in/assets/og-image.png" />
+  <meta property="og:locale" content="en_US" />
+
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Group Contacts Exporter — Export WhatsApp Group Members to Excel/CSV" />
+  <meta name="twitter:description" content="Export any WhatsApp Web group's members to Excel or CSV in one click. Free Chrome extension. Data stays on your device." />
+  <meta name="twitter:image" content="https://groupexporter.nexoraai.co.in/assets/og-image.png" />
+
+  <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Space+Grotesk:wght@600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/css/style.css" />
+
+  <!-- Structured Data: SoftwareApplication -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "Group Contacts Exporter — Members to Excel/CSV",
+    "operatingSystem": "Chrome",
+    "applicationCategory": "BrowserApplication",
+    "description": "Export group members, names and phone numbers from WhatsApp Web to Excel or CSV in one click. Data stays on your device.",
+    "url": "https://groupexporter.nexoraai.co.in/",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "USD"
+    },
+    "downloadUrl": "https://chromewebstore.google.com/detail/group-contacts-exporter-%E2%80%94/kmegeibfadlmgejfedidcamnbljekkkp",
+    "author": {
+      "@type": "Organization",
+      "name": "Nexora AI"
+    }
+  }
+  </script>
+
+  <!-- Structured Data: FAQPage -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Is Group Contacts Exporter free to use?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Yes. Group Contacts Exporter is completely free to use, with no sign-up required." }
+      },
+      {
+        "@type": "Question",
+        "name": "Does it work with large WhatsApp groups?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Yes. It handles groups with hundreds or even thousands of members." }
+      },
+      {
+        "@type": "Question",
+        "name": "Will every member have a phone number in the export?",
+        "acceptedAnswer": { "@type": "Answer", "text": "WhatsApp doesn't show a phone number for every member. Those members export with their name and a blank number, and the extension tells you exactly how many after each export." }
+      },
+      {
+        "@type": "Question",
+        "name": "Is my data uploaded anywhere?",
+        "acceptedAnswer": { "@type": "Answer", "text": "No. Extraction happens entirely inside your browser. Nothing about your contacts is uploaded, stored, or sold." }
+      },
+      {
+        "@type": "Question",
+        "name": "Can the extension send messages or add contacts?",
+        "acceptedAnswer": { "@type": "Answer", "text": "No. It only reads groups you are already a member of. It never sends messages, adds contacts, or automates any action on your account." }
+      }
+    ]
+  }
+  </script>
+</head>
+<body>
+
+  <a class="skip-link" href="#main">Skip to main content</a>
+
+  <header class="site-header">
+    <div class="container nav-inner">
+      <a href="/" class="brand" aria-label="Group Contacts Exporter home">
+        <span class="brand-mark" aria-hidden="true">GC</span>
+        <span class="brand-name">Group Contacts Exporter</span>
+      </a>
+      <nav class="nav-links" aria-label="Primary">
+        <a href="#how-it-works">How it works</a>
+        <a href="#features">Features</a>
+        <a href="#privacy">Privacy</a>
+        <a href="#faq">FAQ</a>
+      </nav>
+      <a class="btn btn-primary btn-small" href="https://chromewebstore.google.com/detail/group-contacts-exporter-%E2%80%94/kmegeibfadlmgejfedidcamnbljekkkp" target="_blank" rel="noopener">Add to Chrome — Free</a>
+    </div>
+  </header>
+
+  <main id="main">
+    <!-- HERO -->
+    <section class="hero">
+      <div class="container hero-inner">
+        <div class="hero-copy">
+          <p class="eyebrow">Chrome Extension · Free</p>
+          <h1>Export WhatsApp group members to Excel or CSV in one click</h1>
+          <p class="hero-sub">
+            Names, phone numbers and roles for every member of any WhatsApp group — even groups with thousands of people. Everything happens on your device; nothing is ever uploaded.
+          </p>
+          <div class="hero-cta">
+            <a class="btn btn-primary btn-large" href="https://chromewebstore.google.com/detail/group-contacts-exporter-%E2%80%94/kmegeibfadlmgejfedidcamnbljekkkp" target="_blank" rel="noopener">
+              Add to Chrome — It's Free
+            </a>
+            <a class="btn btn-ghost btn-large" href="#how-it-works">See how it works</a>
+          </div>
+          <ul class="trust-row" aria-label="Key facts">
+            <li>100% free</li>
+            <li>No sign-up</li>
+            <li>Data never leaves your device</li>
+          </ul>
+        </div>
+
+        <div class="hero-visual" aria-hidden="true">
+          <div class="mock-window">
+            <div class="mock-toolbar">
+              <span class="dot dot-r"></span><span class="dot dot-y"></span><span class="dot dot-g"></span>
+              <span class="mock-toolbar-title">Group Contacts Exporter</span>
+            </div>
+            <div class="mock-body">
+              <div class="mock-group-select">
+                <span class="mock-label">Group</span>
+                <span class="mock-value">Marketing Team 🚀 (482 members)</span>
+              </div>
+              <table class="mock-table">
+                <thead>
+                  <tr><th>Name</th><th>Country</th><th>Phone</th><th>Role</th></tr>
+                </thead>
+                <tbody>
+                  <tr><td>Aditi Sharma</td><td>+91</td><td>98••••••10</td><td>Admin</td></tr>
+                  <tr><td>John Park</td><td>+1</td><td>415•••••02</td><td>Member</td></tr>
+                  <tr><td>Lucia Fernandez</td><td>+34</td><td>612•••••88</td><td>Member</td></tr>
+                  <tr><td>Group Owner</td><td>+44</td><td>770•••••41</td><td>Owner</td></tr>
+                </tbody>
+              </table>
+              <div class="mock-footer">
+                <span class="mock-badge">482 exported · 12 without number</span>
+                <span class="mock-download">⬇ Download CSV</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- LOGOS / WHO IT'S FOR STRIP -->
+    <section class="who-strip" aria-label="Who uses Group Contacts Exporter">
+      <div class="container who-strip-inner">
+        <span>Community admins</span>
+        <span>Event &amp; course organisers</span>
+        <span>Real-estate agents</span>
+        <span>Sales &amp; recruitment teams</span>
+        <span>Anyone backing up their groups</span>
+      </div>
+    </section>
+
+    <!-- HOW IT WORKS -->
+    <section id="how-it-works" class="section">
+      <div class="container">
+        <h2>How it works</h2>
+        <p class="section-sub">From WhatsApp group to spreadsheet in four clicks.</p>
+        <ol class="steps">
+          <li class="step">
+            <span class="step-num">1</span>
+            <h3>Open WhatsApp Web</h3>
+            <p>Log into web.whatsapp.com like you normally would.</p>
+          </li>
+          <li class="step">
+            <span class="step-num">2</span>
+            <h3>Click the extension icon</h3>
+            <p>Group Contacts Exporter opens right from your Chrome toolbar.</p>
+          </li>
+          <li class="step">
+            <span class="step-num">3</span>
+            <h3>Pick a group</h3>
+            <p>Search and select any group — or tick "all groups" to export everything at once.</p>
+          </li>
+          <li class="step">
+            <span class="step-num">4</span>
+            <h3>Extract, then download</h3>
+            <p>Click Extract and get a clean CSV that opens straight in Excel or Google Sheets.</p>
+          </li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- FEATURES -->
+    <section id="features" class="section section-alt">
+      <div class="container">
+        <h2>What you get</h2>
+        <p class="section-sub">Every export is a clean, ready-to-use spreadsheet.</p>
+        <div class="feature-grid">
+          <div class="feature-card">
+            <h3>Every member, even huge groups</h3>
+            <p>Works on groups with hundreds or thousands of people, not just the small ones.</p>
+          </div>
+          <div class="feature-card">
+            <h3>Clean, structured columns</h3>
+            <p>Name, Country Code, Phone Number and Role — laid out and ready for Excel or Sheets.</p>
+          </div>
+          <div class="feature-card">
+            <h3>Roles included</h3>
+            <p>See who's an Owner, Admin, or Member at a glance in the exported file.</p>
+          </div>
+          <div class="feature-card">
+            <h3>Searchable group picker</h3>
+            <p>Find any group from a searchable list — no need to open it first.</p>
+          </div>
+          <div class="feature-card">
+            <h3>Bulk export all groups</h3>
+            <p>Export every group you're in into a single file, in one pass.</p>
+          </div>
+          <div class="feature-card">
+            <h3>Former members, optional</h3>
+            <p>Choose whether to include members who have since left the group.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- PRIVACY -->
+    <section id="privacy" class="section privacy-section">
+      <div class="container privacy-inner">
+        <div>
+          <h2>Your contacts never leave your device</h2>
+          <p class="section-sub" style="max-width: 60ch;">
+            Extraction happens locally in your browser. Nothing about your contacts is uploaded, stored, or sold to anyone. The extension only reads groups you're already a member of — it never sends messages, adds contacts, or automates anything on your account.
+          </p>
+          <ul class="privacy-list">
+            <li>No sign-up or account required</li>
+            <li>No data sold to third parties</li>
+            <li>Local, on-device processing only</li>
+            <li>Never sends messages or adds contacts</li>
+          </ul>
+          <a href="/privacy-policy.html" class="link-underline">Read the full privacy policy →</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ -->
+    <section id="faq" class="section">
+      <div class="container">
+        <h2>Frequently asked questions</h2>
+        <div class="faq-list">
+          <details class="faq-item" open>
+            <summary>Is Group Contacts Exporter free to use?</summary>
+            <p>Yes. It's completely free, with no sign-up required.</p>
+          </details>
+          <details class="faq-item">
+            <summary>Does it work with large WhatsApp groups?</summary>
+            <p>Yes — it handles groups with hundreds or even thousands of members.</p>
+          </details>
+          <details class="faq-item">
+            <summary>Will every member have a phone number in the export?</summary>
+            <p>WhatsApp doesn't show a phone number for every member. Those members export with their name and a blank number, and the extension tells you exactly how many after each export — so you're never guessing.</p>
+          </details>
+          <details class="faq-item">
+            <summary>Is my data uploaded anywhere?</summary>
+            <p>No. Extraction happens entirely inside your browser. Nothing about your contacts is uploaded, stored, or sold.</p>
+          </details>
+          <details class="faq-item">
+            <summary>Can the extension send messages or add contacts?</summary>
+            <p>No. It only reads groups you're already in. It never sends messages, adds contacts, or automates anything.</p>
+          </details>
+          <details class="faq-item">
+            <summary>Is this affiliated with WhatsApp or Meta?</summary>
+            <p>No. Group Contacts Exporter is an independent tool and is not affiliated with, endorsed by, sponsored by, or connected to WhatsApp LLC, Meta Platforms Inc., or any Meta product. WhatsApp™ is a trademark of WhatsApp LLC, referenced here solely to describe compatibility.</p>
+          </details>
+        </div>
+      </div>
+    </section>
+
+    <!-- FINAL CTA -->
+    <section class="final-cta">
+      <div class="container final-cta-inner">
+        <h2>Turn any WhatsApp group into a spreadsheet</h2>
+        <p>Free, local, and ready in under a minute.</p>
+        <a class="btn btn-primary btn-large" href="https://chromewebstore.google.com/detail/group-contacts-exporter-%E2%80%94/kmegeibfadlmgejfedidcamnbljekkkp" target="_blank" rel="noopener">
+          Add to Chrome — It's Free
+        </a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <div>
+        <a href="/" class="brand">
+          <span class="brand-mark" aria-hidden="true">GC</span>
+          <span class="brand-name">Group Contacts Exporter</span>
+        </a>
+        <p class="footer-disclaimer">
+          Group Contacts Exporter is an independent tool and is not affiliated with, endorsed by, sponsored by, or connected to WhatsApp LLC, Meta Platforms Inc., or any Meta product. WhatsApp™ is a trademark of WhatsApp LLC, referenced solely to describe compatibility. You are responsible for the lawful use of exported data.
+        </p>
+      </div>
+      <div class="footer-links">
+        <a href="https://chromewebstore.google.com/detail/group-contacts-exporter-%E2%80%94/kmegeibfadlmgejfedidcamnbljekkkp" target="_blank" rel="noopener">Chrome Web Store</a>
+        <a href="/privacy-policy.html">Privacy Policy</a>
+        <a href="mailto:saurav.chaudhary70@gmail.com">Contact</a>
+        <a href="https://nexoraai.co.in" target="_blank" rel="noopener">Nexora AI</a>
+      </div>
+    </div>
+    <p class="footer-copy">&copy; <span id="year"></span> Nexora AI. All rights reserved.</p>
+  </footer>
+
+  <script src="/js/script.js"></script>
+</body>
+</html>
