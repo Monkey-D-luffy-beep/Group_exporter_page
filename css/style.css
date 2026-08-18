@@ -205,11 +205,13 @@ a { color: inherit; text-decoration: none; }
 }
 
 /* Hero visual (real product screenshot) */
-.hero-visual { display: flex; justify-content: center; }
+.hero-visual { display: flex; justify-content: center; align-items: center; }
 
 .hero-shot {
   width: 100%;
   max-width: 360px;
+  height: auto;
+  aspect-ratio: 460 / 730;
   border-radius: 16px;
   box-shadow: 0 30px 80px -20px rgba(0,0,0,0.6);
   display: block;
@@ -219,6 +221,7 @@ a { color: inherit; text-decoration: none; }
 .promo-shot {
   width: 100%;
   max-width: 320px;
+  height: auto;
   border-radius: 12px;
   border: 1px solid var(--border);
   box-shadow: 0 16px 40px -16px rgba(0,0,0,0.5);
@@ -365,6 +368,7 @@ a { color: inherit; text-decoration: none; }
 .feature-card p { margin: 0; font-size: 0.92rem; }
 .feature-card-media img {
   width: 100%;
+  height: auto;
   border-radius: 10px;
   margin-bottom: 16px;
   display: block;
