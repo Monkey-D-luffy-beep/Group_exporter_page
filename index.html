@@ -29,6 +29,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Space+Grotesk:wght@600;700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="/css/style.css" />
+  <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
 
   <!-- Structured Data: SoftwareApplication -->
   <script type="application/ld+json">
@@ -474,8 +475,8 @@
             <span>Message</span>
             <textarea name="message" rows="4" placeholder="What's on your mind?" required></textarea>
           </label>
-          <button type="submit" class="btn btn-primary btn-large">Send</button>
-          <p class="contact-hint">Opens your email app with this filled in and addressed to us — nothing is sent from this page directly.</p>
+          <button type="submit" class="btn btn-primary btn-large" id="contact-submit">Send</button>
+          <p class="contact-status" id="contact-status"></p>
         </form>
       </div>
     </section>

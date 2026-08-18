@@ -1,6 +1,20 @@
 document.getElementById("year").textContent = new Date().getFullYear();
 
+// Reuses the same EmailJS service/template/public key as the main Nexora AI
+// site's contact form. No dedicated template for this project yet — the
+// source tag below is how you tell this apart from nexoraai.co.in submissions.
+const EMAILJS_SERVICE_ID = "service_x6rmiqm";
+const EMAILJS_TEMPLATE_ID = "template_osokenc";
+const EMAILJS_PUBLIC_KEY = "oE5oyAtF-MUZRXKxb";
+
+if (window.emailjs) {
+  emailjs.init({ publicKey: EMAILJS_PUBLIC_KEY });
+}
+
 const contactForm = document.getElementById("contact-form");
+const contactStatus = document.getElementById("contact-status");
+const contactSubmit = document.getElementById("contact-submit");
+
 if (contactForm) {
   contactForm.addEventListener("submit", (e) => {
     e.preventDefault();
@@ -9,11 +23,30 @@ if (contactForm) {
     const fromEmail = (data.get("from_email") || "").trim();
     const message = (data.get("message") || "").trim();
 
-    const subject = `Group Contacts Exporter — ${topic}`;
-    const bodyLines = [message, "", fromEmail ? `Reply to: ${fromEmail}` : ""].filter(Boolean);
-    const body = bodyLines.join("\n");
+    contactSubmit.disabled = true;
+    contactSubmit.textContent = "Sending…";
+    contactStatus.textContent = "";
+    contactStatus.className = "contact-status";
 
-    const mailto = `mailto:saurav.chaudhary70@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
-    window.location.href = mailto;
+    emailjs
+      .send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, {
+        from_name: `[Group Contacts Exporter] ${topic}`,
+        from_email: fromEmail || "not provided",
+        message: `Source: Group Contacts Exporter landing page\nTopic: ${topic}\n\n${message}`
+      })
+      .then(() => {
+        contactStatus.textContent = "Sent — thanks, we'll get back to you.";
+        contactStatus.className = "contact-status contact-status-success";
+        contactForm.reset();
+      })
+      .catch((error) => {
+        console.error("EmailJS send failed:", error);
+        contactStatus.textContent = "Something went wrong. Email us directly at saurav.chaudhary70@gmail.com instead.";
+        contactStatus.className = "contact-status contact-status-error";
+      })
+      .finally(() => {
+        contactSubmit.disabled = false;
+        contactSubmit.textContent = "Send";
+      });
   });
 }
