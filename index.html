@@ -30,6 +30,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Space+Grotesk:wght@600;700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="/css/style.css" />
   <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+  <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
 
   <!-- Structured Data: SoftwareApplication -->
   <script type="application/ld+json">
@@ -475,7 +476,8 @@
             <span>Message</span>
             <textarea name="message" rows="4" placeholder="What's on your mind?" required></textarea>
           </label>
-          <button type="submit" class="btn btn-primary btn-large" id="contact-submit">Send</button>
+          <div id="contact-turnstile" class="flex justify-center"></div>
+          <button type="submit" class="btn btn-primary btn-large" id="contact-submit" disabled>Send</button>
           <p class="contact-status" id="contact-status"></p>
         </form>
       </div>

@@ -7,6 +7,11 @@ const EMAILJS_SERVICE_ID = "service_x6rmiqm";
 const EMAILJS_TEMPLATE_ID = "template_osokenc";
 const EMAILJS_PUBLIC_KEY = "oE5oyAtF-MUZRXKxb";
 
+// Same Cloudflare Turnstile widget as nexoraai.co.in — this domain must be
+// added to that widget's allowed hostnames in the Cloudflare dashboard, or
+// the widget will fail to validate here even though it renders.
+const TURNSTILE_SITE_KEY = "0x4AAAAAAEUNQPH_Whqnm4oh";
+
 if (window.emailjs) {
   emailjs.init({ publicKey: EMAILJS_PUBLIC_KEY });
 }
@@ -14,10 +19,49 @@ if (window.emailjs) {
 const contactForm = document.getElementById("contact-form");
 const contactStatus = document.getElementById("contact-status");
 const contactSubmit = document.getElementById("contact-submit");
+const turnstileContainer = document.getElementById("contact-turnstile");
+
+let turnstileToken = "";
+let turnstileWidgetId = null;
+
+function renderTurnstile() {
+  if (!window.turnstile || !turnstileContainer || turnstileWidgetId !== null) return;
+  turnstileWidgetId = turnstile.render(turnstileContainer, {
+    sitekey: TURNSTILE_SITE_KEY,
+    theme: "dark",
+    callback: (token) => {
+      turnstileToken = token;
+      contactSubmit.disabled = false;
+    },
+    "expired-callback": () => {
+      turnstileToken = "";
+      contactSubmit.disabled = true;
+    },
+    "error-callback": () => {
+      turnstileToken = "";
+      contactSubmit.disabled = true;
+    }
+  });
+}
+
+if (turnstileContainer) {
+  if (window.turnstile) {
+    renderTurnstile();
+  } else {
+    const turnstileWait = setInterval(() => {
+      if (window.turnstile) {
+        clearInterval(turnstileWait);
+        renderTurnstile();
+      }
+    }, 200);
+  }
+}
 
 if (contactForm) {
   contactForm.addEventListener("submit", (e) => {
     e.preventDefault();
+    if (!turnstileToken) return;
+
     const data = new FormData(contactForm);
     const topic = data.get("topic") || "Question";
     const fromEmail = (data.get("from_email") || "").trim();
@@ -45,7 +89,11 @@ if (contactForm) {
         contactStatus.className = "contact-status contact-status-error";
       })
       .finally(() => {
-        contactSubmit.disabled = false;
+        turnstileToken = "";
+        if (window.turnstile && turnstileWidgetId !== null) {
+          turnstile.reset(turnstileWidgetId);
+        }
+        contactSubmit.disabled = true;
         contactSubmit.textContent = "Send";
       });
   });
