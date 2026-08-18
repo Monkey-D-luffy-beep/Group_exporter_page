@@ -134,6 +134,7 @@
         <a href="#features">Features</a>
         <a href="#privacy">Privacy</a>
         <a href="#faq">FAQ</a>
+        <a href="#contact">Contact</a>
       </nav>
       <a class="btn btn-primary btn-small" href="https://chromewebstore.google.com/detail/group-contacts-exporter-%E2%80%94/kmegeibfadlmgejfedidcamnbljekkkp" target="_blank" rel="noopener">Add to Chrome — Free</a>
     </div>
@@ -163,14 +164,42 @@
         </div>
 
         <div class="hero-visual">
-          <img
-            class="hero-shot"
-            src="/assets/hero-app.png"
-            alt="Group Contacts Exporter popup showing a WhatsApp group's members exported into a clean CSV table"
-            width="460"
-            height="730"
-            fetchpriority="high"
-          />
+          <div class="app-mock" role="img" aria-label="Group Contacts Exporter popup: a group selected, ready to export, with the Extract Contacts button">
+            <div class="app-mock-head">
+              <span class="app-mock-icon"><img src="/assets/icon.webp" alt="" width="28" height="28" /></span>
+              <div>
+                <strong>Contacts Exporter</strong>
+                <span>Save group contacts from WhatsApp Web</span>
+              </div>
+            </div>
+            <div class="app-mock-body">
+              <div class="app-field">
+                <span class="app-field-label">Current Group:</span>
+                <span class="app-field-value">AI&amp;ML Aug'25 - C78</span>
+              </div>
+              <div class="app-status">
+                <span class="app-check">✓</span>
+                <span>Ready — check the group above,<br />then Extract</span>
+              </div>
+              <div class="app-picker">
+                <div class="app-picker-head">
+                  <span>GROUP TO EXPORT</span>
+                  <span class="app-refresh">↻ Refresh</span>
+                </div>
+                <div class="app-search">Type to find a group…</div>
+                <div class="app-select">AI&amp;ML Aug'25 - C78 — open now (113) <span>▾</span></div>
+                <p class="app-note">130 groups found · 8 archived/older groups<br />have no stored count — they still export fine</p>
+                <label class="app-check-row"><span class="app-box"></span> Export <b>all groups</b> into one CSV</label>
+                <label class="app-check-row"><span class="app-box"></span> Include former members</label>
+              </div>
+              <div class="app-btn-primary">⬇ Extract Contacts</div>
+              <p class="app-hint">Pick <b>any group</b> above — it doesn't need to be open.</p>
+              <div class="app-btn-row">
+                <span class="app-btn-coffee">Buy me a coffee</span>
+                <span class="app-btn-feedback">Feedback / Bug</span>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </section>
@@ -252,14 +281,34 @@
             </li>
           </ol>
         </div>
-        <img
-          class="promo-shot how-shot"
-          src="/assets/step-extract.png"
-          alt="Group Contacts Exporter popup with a group selected and the Extract button ready to click"
-          width="1000"
-          height="720"
-          loading="lazy"
-        />
+        <div class="app-mock app-mock-wide how-shot" role="img" aria-label="Group Contacts Exporter mid-extraction, showing 418 contacts found and a live progress bar">
+          <div class="app-mock-head">
+            <span class="app-mock-icon"><img src="/assets/icon.webp" alt="" width="28" height="28" /></span>
+            <div>
+              <strong>Contacts Exporter</strong>
+              <span>Save group contacts from WhatsApp Web</span>
+            </div>
+          </div>
+          <div class="app-mock-body">
+            <div class="app-field">
+              <span class="app-field-label">Current Group:</span>
+              <span class="app-field-value">AI&amp;ML Aug'25 - C78</span>
+            </div>
+            <div class="app-status">
+              <span class="app-check">✓</span>
+              <span><b>Extracting members…</b><br />Reading the group's stored list</span>
+            </div>
+            <div class="app-progress">
+              <div class="app-progress-bar"><span style="width: 68%"></span></div>
+              <p>418 contacts found</p>
+            </div>
+            <div class="app-stat-row">
+              <div class="app-stat"><span>With Names</span><b>187</b></div>
+              <div class="app-stat"><span>Total</span><b>502</b></div>
+            </div>
+            <div class="app-btn-primary">⬇ Extract Contacts</div>
+          </div>
+        </div>
       </div>
     </section>
 
@@ -270,12 +319,25 @@
         <p class="section-sub">Not a raw dump of chat data — an actual usable spreadsheet.</p>
         <div class="feature-grid">
           <div class="feature-card feature-card-media">
-            <img src="/assets/feature-biggroups.png" alt="500+ members exported in one run, built for big WhatsApp groups" loading="lazy" />
+            <div class="stat-mock" role="img" aria-label="500+ members exported in one run">
+              <span class="stat-mock-num">500+</span>
+              <span class="stat-mock-label">members exported in one run</span>
+              <div class="stat-mock-pills">
+                <span>Aarav ✓</span><span>Priya ✓</span><span>James ✓</span><span>Sofia ✓</span>
+              </div>
+            </div>
             <h3>Doesn't choke on big groups</h3>
             <p>A 900-member group loads and exports the same way a 9-member one does. No manual scrolling to force WhatsApp to load stragglers.</p>
           </div>
           <div class="feature-card feature-card-media">
-            <img src="/assets/step-csv.png" alt="Clean, organized CSV with Name, Country Code and Phone Number columns" loading="lazy" />
+            <table class="csv-mock" aria-label="Clean, organized CSV with Name, Country Code and Phone Number columns">
+              <thead><tr><th>Name</th><th>Code</th><th>Phone</th></tr></thead>
+              <tbody>
+                <tr><td>Aarav Sharma</td><td>+91</td><td>98765•••10</td></tr>
+                <tr><td>Priya Nair</td><td>+91</td><td>98123•••78</td></tr>
+                <tr><td>James Miller</td><td>+1</td><td>41555•••42</td></tr>
+              </tbody>
+            </table>
             <h3>A CSV you'd actually send someone</h3>
             <p>Name, country code, and number in their own columns — not one messy field you have to split yourself before it's usable.</p>
           </div>
@@ -319,14 +381,19 @@
           </ul>
           <a href="/privacy-policy.html" class="link-underline">Read the full privacy policy →</a>
         </div>
-        <img
-          class="promo-shot"
-          src="/assets/privacy-shield.png"
-          alt="Your contacts stay yours — extraction runs 100% locally, contacts are never uploaded or sold"
-          width="1160"
-          height="620"
-          loading="lazy"
-        />
+        <div class="shield-mock" role="img" aria-label="Shield icon representing local, private data processing">
+          <svg viewBox="0 0 100 116" fill="none">
+            <path d="M50 4 L94 20 V54 C94 82 74 100 50 112 C26 100 6 82 6 54 V20 Z" stroke="url(#shieldGrad)" stroke-width="4" fill="rgba(99,102,241,0.08)"/>
+            <circle cx="50" cy="56" r="26" fill="#f1f0fb"/>
+            <path d="M39 56l9 9 15-17" stroke="#3730a3" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+            <defs>
+              <linearGradient id="shieldGrad" x1="0" y1="0" x2="100" y2="116">
+                <stop offset="0" stop-color="#818cf8"/>
+                <stop offset="1" stop-color="#6366f1"/>
+              </linearGradient>
+            </defs>
+          </svg>
+        </div>
       </div>
     </section>
 
@@ -380,6 +447,41 @@
             <p>CSV, which opens directly in Excel, Google Sheets, or Numbers with no import step. If your CRM or spreadsheet tool accepts CSV (nearly all do), you're good to go.</p>
           </details>
         </div>
+      </div>
+    </section>
+
+    <!-- CONTACT / FEEDBACK -->
+    <section id="contact" class="section section-alt">
+      <div class="container contact-inner">
+        <div>
+          <h2>Still have a question, a bug, or a feature you want?</h2>
+          <p class="section-sub" style="margin-bottom: 24px;">
+            This is a small, actively-maintained project — a real person reads what you send here. No ticket system, no bot reply.
+          </p>
+        </div>
+        <form class="contact-form" id="contact-form">
+          <div class="contact-row">
+            <label>
+              <span>Your email (optional)</span>
+              <input type="email" name="from_email" placeholder="you@example.com" />
+            </label>
+            <label>
+              <span>What's this about?</span>
+              <select name="topic">
+                <option value="Question">Question</option>
+                <option value="Bug report">Bug report</option>
+                <option value="Feature request">Feature request</option>
+                <option value="Something else">Something else</option>
+              </select>
+            </label>
+          </div>
+          <label>
+            <span>Message</span>
+            <textarea name="message" rows="4" placeholder="What's on your mind?" required></textarea>
+          </label>
+          <button type="submit" class="btn btn-primary btn-large">Send</button>
+          <p class="contact-hint">Opens your email app with this filled in and addressed to us — nothing is sent from this page directly.</p>
+        </form>
       </div>
     </section>
 
