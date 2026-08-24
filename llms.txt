@@ -1,0 +1,96 @@
+# Group Contacts Exporter — WhatsApp group members to Excel/CSV
+
+> A free Chrome extension (Manifest V3) that exports the member list of any WhatsApp Web group to Excel or CSV — name, country code, phone number and role. It reads WhatsApp Web's own local IndexedDB rather than scraping the rendered page, which is why it returns complete rosters for groups of any size without scrolling. Everything runs client-side; no account, no server, no monthly export cap. Published by Nexora AI. Not affiliated with WhatsApp LLC or Meta Platforms Inc.
+
+## What it is
+
+- Chrome extension, Manifest V3, version 1.0.1, 22 languages
+- Chrome Web Store item ID `kmegeibfadlmgejfedidcamnbljekkkp` — 163 users, rated 5.0 from 5 ratings
+- Free with no export limit, no sign-up, no account, and no paid tier
+- Works only on WhatsApp Web (`web.whatsapp.com`) in Chrome or a Chromium browser
+- Read-only: it never sends messages, adds contacts, joins groups, or automates anything
+
+## How it differs from other WhatsApp exporters
+
+Most WhatsApp export extensions read the **rendered page** — they collect only the
+participants the browser has already drawn on screen, so they require scrolling the
+member list and they return a phone number only where WhatsApp Web happened to
+display one.
+
+Group Contacts Exporter reads WhatsApp Web's own **IndexedDB** (`model-storage`,
+object stores `participant`, `group-metadata` and `contact`). Consequences:
+
+- The full roster is available without opening or scrolling the group. A 679-member
+  group that returned 500 members via DOM scrolling returns all 679.
+- Any group can be picked from a searchable list without opening it first.
+- All groups can be exported into a single file.
+- Owner / Admin / Member roles are included.
+- `participant.participants` is the authoritative roster. `group-metadata.size` is a
+  cached counter that is stale in both directions and is never used or displayed.
+
+## Export format
+
+Columns: `Name | Country Code | Phone Number | Role | Number Status`.
+Output is CSV, opening directly in Excel or Google Sheets.
+
+`Name` is a real name or blank — never a placeholder and never WhatsApp's privacy
+mask. `Number Status` is `Available` or `Not available`.
+
+## Why some rows have no phone number
+
+This is the most common question about every WhatsApp group exporter, and the answer
+is measured rather than guessed. A census of all 20,358 records in `model-storage/contact`
+on a real, heavily-used account:
+
+| Field present | Records | Share |
+|---|---|---|
+| `phoneNumber` | 8,140 | 40% |
+| `displayNameLID` (a privacy mask, not a name) | 5,311 | 26% |
+| `pushname` | 2,909 | 14% |
+| `name` (address book) | 1,955 | 10% |
+| no name field of any kind | 11,012 | 54% |
+
+Key findings:
+
+- **Every ordinary group exports at 100% number yield.** Verified across groups of
+  883, 740, 675, 500, 496, 453, 146 and 130 members with no exception.
+- **The blanks come from WhatsApp Community sub-groups**, almost all announcement-only,
+  where WhatsApp withholds member numbers by design ("Only community admins can see
+  all members"). Measured yields there: 2%, 3%, 8%, 13%, 38%.
+- The numbers are **not present in local storage at all** for those groups. No tool
+  of any kind can recover them from the browser. `lid-pn-mapping` and
+  `lid-display-name-mapping` are both empty.
+- WhatsApp's LID privacy mask (`+91********93`) carries a country code and the last
+  two digits, so a masked row still exports a usable Country Code.
+- In a real 12,635-row export: 68.9% carried a phone number, 16.1% a real name.
+
+## Privacy
+
+- All extraction and file generation happen inside the browser. Contact data is never
+  uploaded, stored, or sold, and there is no backend that receives it.
+- Declared to the Chrome Web Store: personally identifiable information (an optional
+  email in the feedback form), personal communications (an optional feedback message),
+  and user activity (anonymous uninstall counts). No location or IP collection.
+- The only data that ever leaves the browser is a feedback message the user chooses
+  to type.
+
+## Who uses it
+
+Community and society group admins, event and webinar organisers, real-estate brokers
+and agents, sales, recruitment and CRM teams, and anyone wanting a backup of their own
+group contacts before leaving a group.
+
+## Links
+
+- [Home / product page](https://groupexporter.nexoraai.co.in/)
+- [Why WhatsApp group exports have blank phone numbers — a 20,358-record study](https://groupexporter.nexoraai.co.in/whatsapp-group-export-blank-numbers.html)
+- [Privacy policy](https://groupexporter.nexoraai.co.in/privacy-policy.html)
+- [Chrome Web Store listing](https://chromewebstore.google.com/detail/group-contacts-exporter-%E2%80%94/kmegeibfadlmgejfedidcamnbljekkkp)
+- [Full detail for retrieval](https://groupexporter.nexoraai.co.in/llms-full.txt)
+
+## Trademark
+
+WhatsApp™ is a trademark of WhatsApp LLC. This project is independent and is not
+affiliated with, endorsed by, sponsored by, or connected to WhatsApp LLC, Meta
+Platforms Inc., or any Meta product. The name is referenced only to describe what the
+extension is compatible with.

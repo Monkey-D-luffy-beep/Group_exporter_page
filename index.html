@@ -3,25 +3,25 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Group Contacts Exporter — Export WhatsApp Group Members to Excel/CSV</title>
-  <meta name="description" content="Export WhatsApp group members to Excel or CSV — name, country code, phone number and role, for groups of any size. No browser console scripts, no signup, no 10-contact free-trial cap. Runs 100% locally." />
-  <meta name="keywords" content="export whatsapp group members to excel, download whatsapp group members, how to export whatsapp group contacts, whatsapp group members with country code, backup whatsapp group before leaving, export whatsapp community members" />
+  <title>Export WhatsApp Group Contacts to Excel or CSV — Group Contacts Exporter</title>
+  <meta name="description" content="Export WhatsApp group contacts to Excel or CSV in one click — name, country code, phone number and role. Export all contacts from a group, or every group at once, for groups of any size. No console scripts, no signup, no monthly export cap. Runs 100% locally." />
+  <meta name="keywords" content="export whatsapp group contacts, export contacts from whatsapp group, export whatsapp group contacts to excel, export whatsapp group contacts to csv, export contact list from whatsapp group, export all contacts from whatsapp group, download whatsapp group contacts, whatsapp group contacts with country code, export whatsapp community members" />
   <meta name="robots" content="index, follow" />
   <link rel="canonical" href="https://groupexporter.nexoraai.co.in/" />
 
   <!-- Open Graph -->
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="Group Contacts Exporter" />
-  <meta property="og:title" content="Group Contacts Exporter — Export WhatsApp Group Members to Excel/CSV" />
-  <meta property="og:description" content="Export any WhatsApp Web group's members — names, phone numbers &amp; roles — to Excel or CSV in one click. Free. Data stays on your device." />
+  <meta property="og:title" content="Export WhatsApp Group Contacts to Excel or CSV — Group Contacts Exporter" />
+  <meta property="og:description" content="Export contacts from any WhatsApp Web group — names, phone numbers &amp; roles — to Excel or CSV in one click. Free. Data stays on your device." />
   <meta property="og:url" content="https://groupexporter.nexoraai.co.in/" />
   <meta property="og:image" content="https://groupexporter.nexoraai.co.in/assets/banner-social.webp" />
   <meta property="og:locale" content="en_US" />
 
   <!-- Twitter -->
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="Group Contacts Exporter — Export WhatsApp Group Members to Excel/CSV" />
-  <meta name="twitter:description" content="Export any WhatsApp Web group's members to Excel or CSV in one click. Free Chrome extension. Data stays on your device." />
+  <meta name="twitter:title" content="Export WhatsApp Group Contacts to Excel or CSV — Group Contacts Exporter" />
+  <meta name="twitter:description" content="Export contacts from any WhatsApp Web group to Excel or CSV in one click. Free Chrome extension. Data stays on your device." />
   <meta name="twitter:image" content="https://groupexporter.nexoraai.co.in/assets/banner-social.webp" />
 
   <link rel="icon" href="/assets/icon.webp" type="image/webp" />
@@ -29,7 +29,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Space+Grotesk:wght@600;700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="/css/style.css" />
-  <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
   <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
 
   <!-- Structured Data: SoftwareApplication -->
@@ -65,6 +65,21 @@
         "@type": "Question",
         "name": "Is Group Contacts Exporter free to use?",
         "acceptedAnswer": { "@type": "Answer", "text": "Yes — install and export with no sign-up and no card required today. Pricing may evolve as we add more advanced features, but the basic export flow is free to use right now." }
+      },
+      {
+        "@type": "Question",
+        "name": "How do I export contacts from a WhatsApp group?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Install the extension, open WhatsApp Web, and click the extension icon. Pick the group from the searchable list — you do not have to open or scroll it first — then click Extract and download the file. To export contacts from a WhatsApp group you get one row per member with Name, Country Code, Phone Number and Role." }
+      },
+      {
+        "@type": "Question",
+        "name": "Can I export WhatsApp group contacts to CSV as well as Excel?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Yes. The export is a standard CSV file, so you can export WhatsApp group contacts to CSV and open the same file directly in Excel, Google Sheets, Numbers, or import it into a CRM. There is no separate step and no conversion needed." }
+      },
+      {
+        "@type": "Question",
+        "name": "Can I export all contacts from a WhatsApp group, or from every group at once?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Both. A single export returns all contacts from a WhatsApp group, not a capped sample. Ticking \"Export all groups into one CSV\" exports the contact list from every group you are in into one combined file." }
       },
       {
         "@type": "Question",
@@ -134,6 +149,7 @@
         <a href="#how-it-works">How it works</a>
         <a href="#features">Features</a>
         <a href="#privacy">Privacy</a>
+        <a href="/blog/">Blog</a>
         <a href="/whatsapp-group-export-blank-numbers.html">Research</a>
         <a href="#faq">FAQ</a>
         <a href="#contact">Contact</a>
@@ -148,9 +164,9 @@
       <div class="container hero-inner">
         <div class="hero-copy">
           <p class="eyebrow">Chrome Extension · Free to Start</p>
-          <h1>Export WhatsApp Group Members to Excel or CSV in One Click</h1>
+          <h1>Export WhatsApp Group Contacts to Excel or CSV in One Click</h1>
           <p class="hero-sub">
-            Every group's member list is really just a spreadsheet you haven't pulled out yet. Pick a group, hit Extract — every name, country code, phone number, and role lands in a CSV in seconds. No opening the group first, no scrolling to load stragglers, no copy-pasting from your phone.
+            A group's contact list is really just a spreadsheet you haven't pulled out yet. Pick a group, hit Extract, and download all contacts from that WhatsApp group — name, country code, phone number and role — as a CSV in seconds. Export one group or every group at once. No opening the group first, no scrolling to load stragglers, no copy-pasting from your phone.
           </p>
           <div class="hero-cta">
             <a class="btn btn-primary btn-large" href="https://chromewebstore.google.com/detail/group-contacts-exporter-%E2%80%94/kmegeibfadlmgejfedidcamnbljekkkp" target="_blank" rel="noopener">
@@ -405,6 +421,18 @@
             <p>Yes — install and export with no sign-up and no card required today. Pricing may evolve as we add more advanced features, but the basic export flow is free to use right now.</p>
           </details>
           <details class="faq-item">
+            <summary>How do I export contacts from a WhatsApp group?</summary>
+            <p>Install the extension, open WhatsApp Web, and click the extension icon. Pick the group from the searchable list — you don't have to open or scroll it first — then click Extract and download the file. To export contacts from a WhatsApp group you get one row per member: Name, Country Code, Phone Number and Role.</p>
+          </details>
+          <details class="faq-item">
+            <summary>Can I export WhatsApp group contacts to CSV as well as Excel?</summary>
+            <p>Yes. The export is a standard CSV file, so you can export WhatsApp group contacts to CSV and open that same file directly in Excel, Google Sheets or Numbers — or import it straight into a CRM. No extra step, no conversion.</p>
+          </details>
+          <details class="faq-item">
+            <summary>Can I export all contacts from a WhatsApp group, or from every group at once?</summary>
+            <p>Both. One export returns all contacts from a WhatsApp group — not a capped sample of the first 10. And ticking <b>Export all groups into one CSV</b> pulls the contact list from every group you're in into a single combined file.</p>
+          </details>
+          <details class="faq-item">
             <summary>Does it work with large WhatsApp groups?</summary>
             <p>Yes — it handles groups with hundreds or even thousands of members.</p>
           </details>
@@ -509,6 +537,7 @@
       </div>
       <div class="footer-links">
         <a href="https://chromewebstore.google.com/detail/group-contacts-exporter-%E2%80%94/kmegeibfadlmgejfedidcamnbljekkkp" target="_blank" rel="noopener">Chrome Web Store</a>
+        <a href="/blog/">Blog</a>
         <a href="/whatsapp-group-export-blank-numbers.html">Research: blank numbers</a>
         <a href="/privacy-policy.html">Privacy Policy</a>
         <a href="mailto:saurav.chaudhary70@gmail.com">Contact</a>

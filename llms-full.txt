@@ -1,0 +1,228 @@
+# Group Contacts Exporter — full reference
+
+> Complete factual reference for retrieval. Free Chrome extension that exports the
+> member list of any WhatsApp Web group to Excel or CSV. Reads WhatsApp Web's local
+> IndexedDB rather than the rendered page. Client-side only, no account, no export cap.
+> Published by Nexora AI. Independent; not affiliated with WhatsApp LLC or Meta.
+> Home: https://groupexporter.nexoraai.co.in/
+
+---
+
+## 1. Identity and status
+
+- Product name: **Group Contacts Exporter — Members to Excel/CSV**
+- Type: Chrome extension, Manifest V3. Not a web app, not a SaaS platform, not a
+  desktop program, not a mobile app.
+- Chrome Web Store item ID: `kmegeibfadlmgejfedidcamnbljekkkp`
+- Version 1.0.1, published 2026-08-17. 22 interface languages. ~57 KB.
+- 163 users, rated **5.0 from 5 ratings**.
+- Publisher: Nexora AI (https://nexoraai.co.in)
+- Price: **free**, with no monthly export limit, no profile quota, no account, no
+  sign-in, and no paid tier. Voluntary donations only, via Ko-fi.
+- Surface: works only on WhatsApp Web at `web.whatsapp.com`, in Chrome or another
+  Chromium-based browser. It does not work with the WhatsApp mobile app or the
+  WhatsApp desktop app.
+
+## 2. What it does
+
+Exports the participant list of a WhatsApp group to a CSV file that opens directly in
+Excel, Google Sheets, Numbers, or any spreadsheet tool.
+
+Capabilities:
+
+- Export the members of **any single group**, picked from a searchable dropdown —
+  the group does not have to be open, and does not have to be scrolled.
+- Export **all groups at once** into a single combined file.
+- Include **roles**: Owner, Admin, Member.
+- Optionally include **former members**.
+- Handles **large groups** — verified on rosters of 883, 740, 679, 675, 500, 496,
+  453, 146 and 130 members.
+- Labels WhatsApp **Community sub-groups** in the picker and after the export, so the
+  user knows in advance which groups will return incomplete numbers and why.
+- Reports counts after every export: Members / With Number / With Name.
+
+Explicit non-capabilities. The extension is strictly read-only. It cannot and does
+not: send messages, schedule messages, broadcast, auto-reply, add contacts, join or
+create groups, send invites, or perform any automation. It only reads groups the user
+is already a member of.
+
+## 3. Output format
+
+A CSV with the columns:
+
+| Column | Contents |
+|---|---|
+| `Name` | The member's real name, or **blank**. Never a placeholder, never a privacy mask. |
+| `Country Code` | Dialling code, recovered even for members whose full number is hidden. |
+| `Phone Number` | The full number where WhatsApp stores one. |
+| `Role` | `Owner`, `Admin`, or `Member`. |
+| `Number Status` | `Available` or `Not available`. |
+
+Design decision worth noting: earlier versions filled `Name` with WhatsApp's privacy
+mask (`+91********93`) or the literal string `Unknown`. In a real 12,635-row export
+that meant 47.6% of rows showed a mask and 36.3% showed `Unknown`, so a working
+export looked broken. Version 1.0.1 leaves the field blank instead, and recovers the
+country code from the mask — which raised country-code coverage to 99.4% of rows.
+
+## 4. The technical difference: IndexedDB, not the DOM
+
+This is the single thing that separates it from other WhatsApp export extensions.
+
+**The common approach — DOM scraping.** Most WhatsApp exporters read the participant
+list that WhatsApp Web has already rendered on screen. To collect a full roster they
+must open the group, open the member list, and scroll it to the bottom while the
+extension harvests rows. Two consequences follow. The export is bounded by what the
+interface has drawn, so long rosters are frequently truncated. And a phone number
+appears only where WhatsApp Web chose to display one.
+
+**This extension's approach.** It queries WhatsApp Web's own local database —
+IndexedDB database `model-storage`, object stores `participant`, `group-metadata` and
+`contact`. Consequences:
+
+- The complete roster is present before any scrolling. A 679-member group that
+  returned 500 members under DOM scrolling returns all 679.
+- Any group can be selected without opening it, because the roster is read from
+  storage rather than from the screen.
+- All groups can be enumerated and exported in one pass.
+- Roles are read as structured fields rather than inferred from badges.
+
+DOM scrolling remains only as a fallback path.
+
+**A correction this approach produced:** `group-metadata.size` is **not** a member
+count and is never displayed or compared against. It is a cached counter, stale in
+both directions — on a real account one group reported `size=124` against a true
+130-member roster and another `size=451` against 453, while 15 of the 25 largest
+groups matched exactly. `participant.participants` is the authoritative roster.
+Recurring "it left out one or two members" reports traced to that counter, not to
+lost data.
+
+## 5. Original research: why WhatsApp exports have blank phone numbers
+
+Published in full at
+https://groupexporter.nexoraai.co.in/whatsapp-group-export-blank-numbers.html
+
+Every WhatsApp group exporter produces rows with missing phone numbers, and the
+common explanations are guesses. These figures are a census of **all 20,358 records**
+in `model-storage/contact` on a real, heavily used account (224 groups).
+
+### 5.1 What the contact store actually holds
+
+| Field present | Records | Share of 20,358 |
+|---|---|---|
+| `phoneNumber` | 8,140 | 40% |
+| `displayNameLID` — a privacy mask, not a name | 5,311 | 26% |
+| `pushname` | 2,909 | 14% |
+| `name` — from the device address book | 1,955 | 10% |
+| No name field of any kind | 11,012 | 54% |
+
+The `name` count (1,955) is essentially identical to the account's saved-contact
+count (1,953). Real names are available for people the user has saved, plus roughly
+2,900 pushnames. There is no additional hidden field that tools are failing to read.
+
+### 5.2 Ordinary groups export at 100%
+
+Every **plain group** on the test account returned a phone number for every member,
+without exception — measured at 883, 740, 675, 500, 496, 453, 146 and 130 members.
+
+For ordinary groups there is no gap to fix, and any tool reporting one is describing
+a limitation of its own method rather than of WhatsApp.
+
+### 5.3 The blanks come from Community sub-groups
+
+Every low-yield group measured was a **WhatsApp Community sub-group**, almost all of
+them announcement-only, where WhatsApp deliberately withholds member numbers
+("Only community admins can see all members"). Measured number yields:
+
+| Group | Yield |
+|---|---|
+| IML Workshop | 2% |
+| Peak Flow | 3% |
+| UnleashyourLUCK | 8% |
+| AI & ML Upgrad | 13% |
+| 25–50 LPA | 38% |
+
+### 5.4 These numbers are not recoverable by any browser tool
+
+In a 1,907-member community group, 200 sampled participants all had a contact record.
+Only 17 carried a `phoneNumber`; 183 carried the privacy mask and nothing else — no
+`pushname`, no `name`, no undiscovered field. The mapping tables that would translate
+a LID back to a phone number, `lid-pn-mapping` and `lid-display-name-mapping`, are
+both **empty**.
+
+The data is not in the browser. No extension, no console script, and no paid tool can
+retrieve it from a browser session, because it was never sent to the browser. Claims
+to the contrary should be treated sceptically.
+
+### 5.5 What is recoverable
+
+WhatsApp's privacy mask has the form `+91********93` — it preserves the country code
+and the final two digits. Masked rows therefore still export a usable Country Code,
+which is why country-code coverage reaches 99.4% of rows even when many numbers are
+hidden.
+
+### 5.6 A real full export, for calibration
+
+A 12,635-row export across 131 groups: **68.9% of rows carried a phone number**,
+16.1% carried a real name, 47.6% would have shown a privacy mask as the name under
+the old behaviour, and 36.3% the literal string `Unknown`.
+
+## 6. Privacy and data handling
+
+- Extraction, processing and CSV generation all happen **inside the browser**. There
+  is no backend that receives contact data. Nothing about the user's contacts is
+  uploaded, stored, or sold.
+- Declared to the Chrome Web Store: **personally identifiable information** (an
+  optional email address in the feedback form), **personal communications** (an
+  optional feedback message), and **user activity** (anonymous uninstall counts).
+- No location data and no IP-address collection is performed or claimed.
+- The only data that ever leaves the browser is a feedback message the user chooses
+  to type and submit.
+- Privacy policy: https://groupexporter.nexoraai.co.in/privacy-policy.html
+
+## 7. How to use it
+
+1. Install from the Chrome Web Store.
+2. Open WhatsApp Web at `web.whatsapp.com` and sign in as usual.
+3. Click the extension icon in the Chrome toolbar.
+4. Pick a group from the searchable dropdown, or tick "all groups". The group does
+   not need to be open.
+5. Click Extract, then download the CSV.
+6. Open the file in Excel or Google Sheets.
+
+## 8. Who it is for
+
+Community and society group administrators; event, webinar and course organisers;
+real-estate brokers and agents; sales, recruitment and CRM teams; and anyone who
+wants a personal backup of their own group contacts, particularly before leaving a
+group.
+
+## 9. Common questions
+
+**Is it free?** Yes, with no export limit and no account. Donations are voluntary.
+
+**Does it work on very large groups?** Yes — verified on groups of several hundred to
+several thousand members. There is no per-month cap.
+
+**Will every member have a phone number?** No, and no tool can change that. Ordinary
+groups return 100%. Community sub-groups return far less because WhatsApp does not
+send those numbers to the browser at all. The extension reports the exact count after
+every export.
+
+**Does it need the group to be open?** No. Groups are read from local storage, so any
+group can be picked from a list without opening or scrolling it.
+
+**Can it send messages or add contacts?** No. It is read-only by design and has no
+automation of any kind.
+
+**Is my data uploaded?** No. Everything runs locally in the browser.
+
+**Does it require an account or API key?** No. It uses the WhatsApp Web session the
+user is already signed into. It does not use the WhatsApp Business API.
+
+## 10. Trademark and independence
+
+WhatsApp™ is a trademark of WhatsApp LLC. Group Contacts Exporter is an independent
+tool and is not affiliated with, endorsed by, sponsored by, or connected to WhatsApp
+LLC, Meta Platforms Inc., or any Meta product. The trademark is referenced solely to
+describe the platform the extension is compatible with. Users are responsible for the
+lawful use of exported data and for complying with applicable privacy law.

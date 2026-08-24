@@ -1,4 +1,42 @@
 User-agent: *
 Allow: /
 
+# AI / answer-engine crawlers - explicitly allowed
+User-agent: GPTBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: OAI-SearchBot
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: Claude-Web
+Allow: /
+
+User-agent: anthropic-ai
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+User-agent: Applebot-Extended
+Allow: /
+
+User-agent: Bingbot
+Allow: /
+
+User-agent: CCBot
+Allow: /
+
 Sitemap: https://groupexporter.nexoraai.co.in/sitemap.xml
+
+# Structured summaries for language models - see https://llmstxt.org
+# https://groupexporter.nexoraai.co.in/llms.txt
+# https://groupexporter.nexoraai.co.in/llms-full.txt
