@@ -7,14 +7,14 @@ template: guide
 keywords: whatsapp group member count wrong, export missing members whatsapp, whatsapp group shows different member count, verify whatsapp group export, export contacts from whatsapp group
 takeaways:
   - The displayed count is cached :: WhatsApp stores a group size counter separately from the roster, and it drifts. It is not recomputed every time you look at it.
-  - Wrong in both directions :: On 25 real groups it under-counted one by 6 and over-counted another by 2. Fifteen matched exactly.
+  - Measurably wrong :: On the 25 largest groups of a real account, 10 disagreed with the roster. The two we can name under-counted by 6 and by 2.
   - The roster is the truth :: The participant list is authoritative. A count that disagrees with it is the count being stale, not the list being short.
   - Off-by-one and off-by-two are the tell :: A gap of hundreds is a real extraction problem. A gap of one or two is almost always the counter.
   - Never compare against it :: We do not show that number or check exports against it, because doing so manufactures bugs that do not exist.
 faq:
   - Why does my WhatsApp export have fewer members than the group says? :: If the gap is one or two, it is almost certainly WhatsApp's cached group-size counter being stale rather than your export missing people. If the gap is large, the tool is probably reading the rendered page rather than the stored roster.
   - How do I verify a WhatsApp group export is complete? :: Compare it against the participant list itself, not the member count in the group header. Scroll the member list and spot-check the last few names against the end of your file.
-  - Does the member count include people who left? :: The cached counter can lag behind departures and joins in either direction, which is exactly why it disagrees with a freshly read roster.
+  - Does the member count include people who left? :: The cached counter can lag behind both joins and departures, which is exactly why it disagrees with a freshly read roster.
   - Is an off-by-two export a bug in the extension? :: In our measurements, no. We stopped comparing against the cached counter entirely after finding it wrong on 10 of 25 groups.
 ---
 
@@ -44,7 +44,7 @@ Rather than argue about it, we compared the cached counter against a freshly rea
 | Group 31 GLA Members | 451 | 453 | Under-counts by 2 |
 | 15 other groups | — | — | Matched exactly |
 
-Ten of the 25 disagreed. The drift runs in **both directions** — a group can display a number higher or lower than its real membership — which rules out the simplest explanation that it just lags behind new joins.
+Ten of the 25 disagreed with the roster. Both of the cases we can name understated the real membership, by 6 and by 2 respectively — so if you are comparing an export against the header, the export having *more* rows than the header claims is a perfectly ordinary outcome.
 
 Fifteen matching exactly is the part that makes this so confusing in practice. The counter is right most of the time, which is precisely why people trust it and then get a surprise.
 
@@ -62,7 +62,7 @@ We also checked whether some second roster existed that we were failing to merge
 
 The useful test is not arithmetic against the header. It is this:
 
-- **A gap of one or two is the counter.** Almost always. Especially on a group where people have recently joined or left.
+- **A gap of one or two, in either direction, is the counter.** Almost always. Especially on a group where people have recently joined or left.
 - **A gap of tens or hundreds is a real extraction problem** — and usually a specific one. Tools that read the rendered participant list rather than stored data stop wherever scrolling stopped. A 679-member group returning 500 rows is that, not a cache issue. We wrote that up separately in [why exports miss members](/blog/whatsapp-group-export-missing-members.html).
 - **To verify properly, compare against the list, not the number.** Open the participant list, scroll to the bottom, and check the last few names against the end of your file. If the tail matches, you have the whole roster.
 - **Blank phone numbers are a different thing entirely.** A row that exists with no number is not a missing member. That is covered in [our research on blank numbers](/whatsapp-group-export-blank-numbers.html).
