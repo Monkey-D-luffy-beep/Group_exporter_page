@@ -468,6 +468,12 @@ def render_sitemap(posts: list[dict]) -> str:
 # --------------------------------------------------------------------------
 
 def main() -> int:
+    # Windows consoles default to cp1252 and will crash on non-ASCII output.
+    try:
+        sys.stdout.reconfigure(encoding="utf-8")
+    except (AttributeError, OSError):
+        pass
+
     check_only = "--check" in sys.argv
 
     if not CONTENT.exists():
@@ -499,7 +505,7 @@ def main() -> int:
     for meta, body, name in parsed:
         page = render_page(meta, body, index, name)
         words = word_count(body)
-        flag = "  ⚠ thin" if words < 900 else ""
+        flag = "   <-- THIN, under 900 words" if words < 900 else ""
         if not check_only:
             (OUT / f"{meta['slug']}.html").write_text(page, encoding="utf-8")
         print(f"  {meta['slug']:<52} {words:>5} words  {meta['template']}{flag}")
