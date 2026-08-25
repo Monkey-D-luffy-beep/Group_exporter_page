@@ -453,6 +453,7 @@ def render_sitemap(posts: list[dict]) -> str:
     urls = [(f"{SITE}/", today, "weekly", "1.0"),
             (f"{SITE}/blog/", today, "weekly", "0.8"),
             (f"{SITE}{RESEARCH}", "2026-08-19", "monthly", "0.9"),
+            (f"{SITE}/support.html", "2026-08-26", "monthly", "0.5"),
             (f"{SITE}/privacy-policy.html", "2026-08-19", "yearly", "0.3")]
     urls += [(f"{SITE}/blog/{p['slug']}.html", p["updated"], "monthly", "0.7") for p in posts]
     body = "\n".join(
